@@ -4,17 +4,20 @@ import br.com.controledegastos.controledegastos.enums.TipoLancamento;
 import br.com.controledegastos.controledegastos.model.Lancamento;
 import br.com.controledegastos.controledegastos.repository.LancamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
 
-@RestController
+@Controller
 public class LancamentoController {
+
     @Autowired
     private LancamentoRepository lancamentoRepository;
 
+    // Método para carregar a página principal
     @GetMapping("/")
     public String index(Model model) {
         List<Lancamento> lancamentos = lancamentoRepository.findAll();
