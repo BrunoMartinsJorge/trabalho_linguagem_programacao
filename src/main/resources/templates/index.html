@@ -66,27 +66,17 @@
 <body>
 <div class="container">
     <h1>Meu Controle de Gastos 💰</h1>
-
-    <!-- Formulário para adicionar lançamento -->
-    <form hx-post="http://localhost:8080/lancamentos"
+    <form hx-post="/lancamentos"
           hx-target="#lista-lancamentos"
           hx-swap="outerHTML"
           hx-on::after-request="this.reset()">
-        <label>
-            <input type="text" name="descricao" placeholder="Descrição" required>
-        </label>
-        <label>
-            <input type="number" step="0.01" name="valor" placeholder="Valor" required>
-        </label>
-        <label>
-            <select name="tipo">
-                <option th:each="tipoOpt : ${tipos}" th:value="${tipoOpt}" th:text="${tipoOpt}"></option>
-            </select>
-        </label>
+        <input type="text" name="descricao" placeholder="Descrição" required>
+        <input type="number" step="0.01" name="valor" placeholder="Valor" required>
+        <select name="tipo" required>
+            <option th:each="tipoOpt : ${tipos}" th:value="${tipoOpt}" th:text="${tipoOpt}"></option>
+        </select>
         <button type="submit">Adicionar</button>
     </form>
-
-    <!-- Tabela de lançamentos -->
     <table>
         <thead>
         <tr>
